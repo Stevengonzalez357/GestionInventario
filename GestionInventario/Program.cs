@@ -26,6 +26,44 @@ namespace GestionInventario
 
                 Console.Write("Seleccione una opción: ");
                 string opcion = Console.ReadLine();
+
+                switch (opcion)
+                {
+                    case "1":
+                        Console.Write("Ingrese el nombre del producto: ");
+                        string nombre = Console.ReadLine();
+                        Console.Write("Ingrese el precio del producto: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal precio))
+                        {
+                            Producto producto = new Producto(nombre, precio);
+                            inventario.AgregarProducto(producto);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: El precio ingresado no es válido.");
+                        }
+                        break;
+
+                    case "2":
+                        Console.Write("Ingrese el nombre del producto a actualizar: ");
+                        string nombreActualizar = Console.ReadLine();
+                        Console.Write("Ingrese el nuevo precio: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal nuevoPrecio))
+                        {
+                            inventario.ActualizarPrecioProducto(nombreActualizar, nuevoPrecio);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: El precio ingresado no es válido.");
+                        }
+                        break;
+
+                    case "3":
+                        Console.Write("Ingrese el nombre del producto a eliminar: ");
+                        string nombreEliminar = Console.ReadLine();
+                        inventario.EliminarProducto(nombreEliminar);
+                        break;
+                }
             }
         }
     }
