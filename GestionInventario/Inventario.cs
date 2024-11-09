@@ -94,6 +94,20 @@ namespace GestionInventario
             }
         }
 
+        public void GenerarReporte()
+        {
+            int totalProductos = productos.Count;
+            decimal precioPromedio = productos.Any() ? productos.Average(p => p.Precio) : 0;
+            var productoMasCaro = productos.OrderByDescending(p => p.Precio).FirstOrDefault();
+            var productoMasBarato = productos.OrderBy(p => p.Precio).FirstOrDefault();
+
+            Console.WriteLine("\n--- Reporte de Inventario ---");
+            Console.WriteLine($"Total de productos: {totalProductos}");
+            Console.WriteLine($"Precio promedio de productos: {precioPromedio:CS}");
+            if (productoMasCaro != null) Console.WriteLine($"Producto más caro: {productoMasCaro.Nombre} - {productoMasCaro.Precio:CS}");
+            if (productoMasBarato != null) Console.WriteLine($"Producto más barato: {productoMasBarato.Nombre} - {productoMasBarato.Precio:CS}");
+        }
+
     }
 }
    
