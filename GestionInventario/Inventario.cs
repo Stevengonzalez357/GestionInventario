@@ -38,7 +38,29 @@ namespace GestionInventario
             return productos.Where(p => p.Precio >= precioMinimo).OrderBy(p => p.Precio);
         }
 
+        public bool ActualizarPrecioProducto(string nombre, decimal nuevoPrecio)
+        {
+            var producto = productos.FirstOrDefault(p => p.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+            if (producto != null)
+            {
+                if (nuevoPrecio > 0)
+                {
+                    producto.Precio = nuevoPrecio;
+                    Console.WriteLine("Precio actualizado correctamente.");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Error: El precio debe ser positivo.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Producto no encontrado.");
+            }
+            return false;
 
+        }
 
     }
 }
