@@ -17,5 +17,10 @@ namespace GestionInventario
             Precio = precio;
         }
 
+        public void MostrarInformacion()
+        {
+            Console.WriteLine($"Producto: {Nombre}, Precio: {Precio:CS}");
+        }
+
     }
 }
