@@ -63,6 +63,39 @@ namespace GestionInventario
                         string nombreEliminar = Console.ReadLine();
                         inventario.EliminarProducto(nombreEliminar);
                         break;
+
+                    case "4":
+                        Console.Write("Ingrese el precio mínimo para filtrar: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal precioMinimo))
+                        {
+                            var productosFiltrados = inventario.FiltrarYOrdenarProductos(precioMinimo);
+                            Console.WriteLine("\nProductos filtrados y ordenados:");
+                            foreach (var producto in productosFiltrados)
+                            {
+                                producto.MostrarInformacion();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: El precio ingresado no es válido.");
+                        }
+                        break;
+
+                    case "5":
+                        inventario.ContarAgruparProductosPorPrecio();
+                        break;
+
+                    case "6":
+                        inventario.GenerarReporte();
+                        break;
+
+                    case "7":
+                        Console.WriteLine("Saliendo del sistema...");
+                        return;
+
+                    default:
+                        Console.WriteLine("Opción no válida. Intente nuevamente.");
+                        break;
                 }
             }
         }
