@@ -32,6 +32,14 @@ namespace GestionInventario
             productos.Add(producto);
 
         }
+
+        public IEnumerable<Producto> FiltrarYOrdenarProductos(decimal precioMinimo)
+        {
+            return productos.Where(p => p.Precio >= precioMinimo).OrderBy(p => p.Precio);
+        }
+
+
+
     }
 }
    
